@@ -48,15 +48,29 @@ travel_booking_agent/
 
 ## 🧠 The Agentic Flow
 
+
+```markdown
+## 🧠 The Agentic Flow (Detailed)
+
 ```mermaid
 flowchart TD
-    U[User Query] -->|Natural Language| A[LLM Agent]
-    A -->|Tool Call| F[search_flights()]
+    subgraph User_Side [User Side]
+        U[User Query]
+    end
+
+    subgraph Agentic_AI [Agentic AI System]
+        A[LLM Agent]
+        F[search_flights()]
+        H[search_hotels()]
+    end
+
+    U -->|Natural Language| A
+    A -->|Tool Call| F
     F -->|JSON Results| A
-    A -->|Tool Call| H[search_hotels()]
+    A -->|Tool Call| H
     H -->|JSON Results| A
-    A -->|Reason, Summarize| U[Response to User]
-```
+    A -->|Reason, Summarize| U
+
 
 At runtime:
 1. The **LLM** interprets user intent.  
